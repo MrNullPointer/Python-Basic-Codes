@@ -35,3 +35,9 @@ class D(C, B):
     def z(self):
         print("D.z")
         
+obj = D()
+print(obj.a)
+print(obj.x())
+print(obj.y())
+print(obj.z())
+print("Bye")
