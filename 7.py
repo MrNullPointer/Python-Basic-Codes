@@ -36,6 +36,10 @@ class Rabbit(Animal):
         return "rabbit: " + str(self.name) + " " + str(self.age)
     def __add__(self,other):
         return Rabbit('Mopsy',0,self,other)
+    def __eq__(self,other):
+        parents_same = self.parent1 == other.parent1 and self.parent2 == other.parent2
+        parents_opposite = self.parent1 == other.parent2 and self.parent2 == other.parent1
+        return parents_same or parents_opposite
     
 class Person(Animal):
     def __init__(self,name,age):
