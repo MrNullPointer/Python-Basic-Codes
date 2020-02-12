@@ -46,8 +46,11 @@ class MITPerson(Person):
     
     def speak(self,utterance):
         return (self.getLastName() + " says: " + utterance)
+ 
+class student(MITPerson):
+    pass 
     
-class UG(MITPerson):
+class UG(student):
     def __init__(self,name,classYear):
         MITPerson.__init__(self, name)
         self.year = classYear
@@ -58,8 +61,11 @@ class UG(MITPerson):
     def speak(self, utterance):
         return MITPerson.speak(self, " Dude, " + utterance)
 
-class Grad(MITPerson):
+class Grad(student):
+    pass
+
+class TransferStudents(student):
     pass
 
 def isStudent(obj):
-    return isinstance(obj, UG) or isinstance(obj, Grad)
+    return isinstance(obj, student)
