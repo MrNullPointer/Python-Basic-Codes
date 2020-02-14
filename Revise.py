@@ -30,12 +30,11 @@ class Person(object):
         '''return self's name'''
         return self.name
 
-        Person.__init__(self,name)
-
 class MITPerson(Person):
     nextIdnum = 0  #next ID num to assign
 
     def __init__(self,name):
+        Person.__init__(self, name)
         self.idNum = MITPerson.nextIdnum
         MITPerson.nextIdnum += 1
 
@@ -68,6 +67,18 @@ class Grad(Student):
 class TransferStudent(Student):
     pass
 
+class Professor(MITPerson):
+    def __init__(self,name,department):
+        MITPerson.__init__(self,name)
+        self.department = department
+
+    def speak(self,utterance):
+        new = 'In course ' + self.department + ' we say '
+        return MITPerson.speak(self, new + utterance)
+
+    def lecture(self,topic):
+        return self.speak(' it is obvious that ' + topic)
+
 def isStudent(obj):
     return isinstance(obj,Student)
 
@@ -78,14 +89,14 @@ s2 = UG('Ben Affleck',2017)
 s3 = UG('Lin Manuel Miranda',2018)
 s4 = Grad('Leonardo di Caprio')
 
+Faculty = Professor('Doctor Arrogant', 'Six')
 
-
-# m3 = MITPerson('Mark Zuckerberg')
-# Person.setBirthday(m3,5,14,84)
-# m2 = MITPerson('Drew Houston')
-# Person.setBirthday(m2,3,4,83)
-# m1 = MITPerson('Bill Gates')
-# Person.setBirthday(m1,10,28,55)
+m3 = MITPerson('Mark Zuckerberg')
+Person.setBirthday(m3,5,14,84)
+m2 = MITPerson('Drew Houston')
+Person.setBirthday(m2,3,4,83)
+m1 = MITPerson('Bill Gates')
+Person.setBirthday(m1,10,28,55)
 #
 # MITPersonList = [m1,m2,m3]
 #
@@ -97,7 +108,7 @@ s4 = Grad('Leonardo di Caprio')
 # for elem in MITPersonList:
 #     print(elem)
 
-# p1 = MITPerson('Eric')
-# p2 = MITPerson('John')
-# p3 = MITPerson('John')
-# p4 = Person('John')
+p1 = MITPerson('Eric')
+p2 = MITPerson('John')
+p3 = MITPerson('John')
+p4 = Person('John')
