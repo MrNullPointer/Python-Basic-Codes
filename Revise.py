@@ -79,6 +79,47 @@ class Professor(MITPerson):
     def lecture(self,topic):
         return self.speak(' it is obvious that ' + topic)
 
+class Grades(object):
+    '''Mapping from students to list of grades'''
+    def __init__(self):
+        self.students = [] #list of student object
+        self.grades = {}  # map idNum -> List of grades
+        self.isSorted = True
+
+    def addStudent(self, student):
+        '''Assume student is the student type
+            add student to the grade book'''
+        if student in self.students:
+            raise ValueError('Duplicate Statement')
+        self.students.append(student)
+        self.grades[student.getIDnum()] = []
+        self.isSorted = False
+
+    def addGrade(self,student,grade):
+        '''Assumes grade is a float
+            Add grade to the list of grades for student'''
+        try:
+            self.grades[student.getIDnum()].append(grade)
+        except KeyError:
+            raise ValueError('Student not in gradebook!!')
+
+    def getGrades(self, student):
+        '''Assumes grade is a float
+            Add grade to the list of grades for student'''
+        try:
+            self.grades[student.getIDnum()][:]
+        except KeyError:
+            raise ValueError('Student not in gradebook!!')
+
+    def allStudents(self):
+        '''Return the list of students in grade book'''
+        if not self.isSorted:
+            self.students.sort()
+            self.isSorted = True
+        return self.students[:]
+
+
+
 def isStudent(obj):
     return isinstance(obj,Student)
 
